@@ -1,9 +1,11 @@
 const express = require("express");
 const cors = require("cors");
-const fetch = require("node-fetch"); // Ensure node-fetch is installed
+const fetch = require("node-fetch");
 
 const app = express();
-app.use(cors());
+
+// ✅ Proper CORS Configuration
+app.use(cors({ origin: "*" })); // Allows requests from any frontend
 app.use(express.json());
 
 app.post("/fetch-leetcode", async (req, res) => {
@@ -49,7 +51,7 @@ app.post("/fetch-leetcode", async (req, res) => {
     }
 });
 
-// ✅ Use dynamic PORT for deployment compatibility
+// ✅ Use dynamic PORT for Render Deployment
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
